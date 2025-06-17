@@ -73,7 +73,7 @@ def mostrar_dashboard(cash_cut_id, user_name, on_close_callback):
 
     # Función para cerrar el dashboard y volver al login
     def cerrar_dashboard():
-        from report_generator import generar_pdf_dashboard
+        
         ventana.destroy()
         on_close_callback()
 
