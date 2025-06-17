@@ -2,6 +2,9 @@ import tkinter as tk
 import sqlite3
 from datetime import datetime
 
+# 🔽 Importamos la función para generar el PDF
+from report_generator import generar_pdf_dashboard
+
 def mostrar_dashboard(cash_cut_id, user_name, on_close_callback):
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -73,7 +76,18 @@ def mostrar_dashboard(cash_cut_id, user_name, on_close_callback):
 
     # Función para cerrar el dashboard y volver al login
     def cerrar_dashboard():
-        
+        # 🧾 Generar el PDF antes de cerrar
+        ruta_pdf = generar_pdf_dashboard(
+            user_name,
+            opening_time,
+            closing_time,
+            duration_hours,
+            total_efectivo,
+            total_generados,     # nuevo
+            total_cerrados       # nuevo
+        )
+        print(f"PDF generado en: {ruta_pdf}")  # Debug opcional
+
         ventana.destroy()
         on_close_callback()
 
