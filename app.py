@@ -10,6 +10,8 @@ import os
 import qrcode
 from turno import mostrar_cierre_turno
 from dashboard import mostrar_dashboard
+import report_generator
+
 
 def generate_ticket_qr(plate):
     qr_folder = "qrcodes"

@@ -1,6 +1,9 @@
 import tkinter as tk
 import sqlite3
 from datetime import datetime
+import report_generator
+from fpdf import FPDF
+from email_sender import enviar_pdf_por_correo
 
 # 🔽 Importamos la función para generar el PDF
 from report_generator import generar_pdf_dashboard
@@ -87,6 +90,13 @@ def mostrar_dashboard(cash_cut_id, user_name, on_close_callback):
             total_cerrados       # nuevo
         )
         print(f"PDF generado en: {ruta_pdf}")  # Debug opcional
+
+        enviar_pdf_por_correo(
+        destinatario="jorge.herrera.g19@gmail.com",  # <--- Aquí el correo del gerente o quien deba recibirlo
+        asunto="Resumen de turno - Estacionamiento",
+        cuerpo=f"Hola Sr. Iván, aquí el reporte del turno. \n\nAdjunto encontrarás el resumen del turno.",
+        ruta_pdf=ruta_pdf
+    )
 
         ventana.destroy()
         on_close_callback()
